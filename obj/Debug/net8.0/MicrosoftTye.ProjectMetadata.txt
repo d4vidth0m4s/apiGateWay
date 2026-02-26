@@ -1,0 +1,21 @@
+AssemblyInformationalVersion:
+InformationalVersion: 1.0.0
+Version: 1.0.0
+TargetFrameworks:
+RunCommand: C:\Users\DELL\source\repos\msPrueba\apiGateWay\bin\Debug\net8.0\apiGateWay.exe
+RunArguments:
+TargetPath: C:\Users\DELL\source\repos\msPrueba\apiGateWay\bin\Debug\net8.0\apiGateWay.dll
+PublishDir: bin\Debug\net8.0\publish\
+AssemblyName: apiGateWay
+IntermediateOutputPath: obj\Debug\net8.0\
+TargetFramework: net8.0
+_ShortFrameworkIdentifier:
+_ShortFrameworkVersion:
+_TargetFrameworkVersionWithoutV: 8.0
+FrameworkReference: Microsoft.NETCore.App;Microsoft.AspNetCore.App
+ContainerBaseImage:
+ContainerBaseTag:
+MicrosoftNETPlatformLibrary:
+_AspNetCoreAppSharedFxIsEnabled:
+UsingMicrosoftNETSdkWeb: true
+AzureFunctionsVersion:
