@@ -1,0 +1,21 @@
+# Build outputs
+bin/
+obj/
+
+# Publish artifacts
+publish/
+out/
+
+# IDE/editor folders
+.vs/
+.vscode/
+.idea/
+
+# Test and coverage outputs
+TestResults/
+coverage/
+
+# Logs and temp folders
+logs/
+tmp/
+temp/
