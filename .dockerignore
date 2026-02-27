@@ -1,0 +1,29 @@
+# Build artifacts
+bin/
+obj/
+out/
+publish/
+
+# Version control
+.git/
+.gitignore
+
+# IDE/editor files
+.vs/
+.vscode/
+.idea/
+*.user
+*.suo
+
+# Logs and temporary files
+logs/
+tmp/
+temp/
+*.log
+
+# Test and coverage outputs
+TestResults/
+coverage/
+
+# Local/dev-only settings
+appsettings.Development.json
