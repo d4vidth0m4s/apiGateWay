@@ -34,6 +34,6 @@ app.UseCors(MyAllowSpecificOrigins);
 app.UseAuthentication();
 app.UseAuthorization();
 app.UseHeaderInjection();
-app.MapReverseProxy();
 app.MapGet("/", () => "Communication with API Gateway"); 
+app.MapReverseProxy();
 app.Run();
