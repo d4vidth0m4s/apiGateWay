@@ -3,7 +3,7 @@
 var builder = WebApplication.CreateBuilder(args);
 
 var MyAllowSpecificOrigins = "AllowFrontend";
-var frontendUrl = builder.Configuration["FRONTEND_URL"] ?? "http://localhost:3000";
+var frontendUrl = builder.Configuration["FRONTEND_URL"] ?? "http://localhost:5000";
 
 builder.Services.AddCors(options =>
 {
