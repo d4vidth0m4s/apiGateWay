@@ -3,13 +3,16 @@
 var builder = WebApplication.CreateBuilder(args);
 
 var MyAllowSpecificOrigins = "AllowFrontend";
-var frontendUrl = builder.Configuration["fronendUrl"] ?? "http://localhost:5000";
+var frontendUrls = builder.Configuration["fronendUrl"]?.Split(",") 
+                   ?? new[] { "http://localhost:4002","http://localhost:4001" };
+var internalSecret = builder.Configuration["InternalSecret"]
+    ?? throw new InvalidOperationException("InternalSecret no configurado en appsettings");
 
 builder.Services.AddCors(options =>
 {
     options.AddPolicy(MyAllowSpecificOrigins, policy =>
     {
-        policy.WithOrigins(frontendUrl)
+        policy.WithOrigins(frontendUrls)  // acepta array
               .AllowAnyHeader()
               .AllowAnyMethod()
               .AllowCredentials();
@@ -33,7 +36,7 @@ app.UseWebSockets();
 app.UseCors(MyAllowSpecificOrigins);
 app.UseAuthentication();
 app.UseAuthorization();
-app.UseHeaderInjection();
+app.UseHeaderInjection(internalSecret);
 app.MapGet("/", () => "Communication with API Gateway"); 
 app.MapReverseProxy();
 app.Run();

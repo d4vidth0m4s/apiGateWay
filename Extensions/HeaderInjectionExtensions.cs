@@ -13,14 +13,14 @@ namespace apiGateWay.Extensions
             {"/Comercios/ActualizarComercio", new[] { "X-User-Id" } },
 
         };
-        public static IApplicationBuilder UseHeaderInjection(this IApplicationBuilder app)
+        public static IApplicationBuilder UseHeaderInjection(this IApplicationBuilder app, string internalSecret)
         {
+            if (string.IsNullOrWhiteSpace(internalSecret))
+                throw new InvalidOperationException("InternalSecret no configurado");
+
             return app.Use(async (context, next) =>
             {
-                var config = context.RequestServices.GetRequiredService<IConfiguration>();
-                var secret = config["InternalSecret"]
-                         ?? throw new InvalidOperationException("InternalSecret no configurado");
-                context.Request.Headers["X-Internal-Secret"] = secret;
+                context.Request.Headers["X-Internal-Secret"] = internalSecret;
 
                 var path = context.Request.Path.Value ?? "";
                 var route = _headersPerRoute.Keys.FirstOrDefault(r => path.StartsWith(r));
