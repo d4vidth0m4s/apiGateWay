@@ -1,4 +1,5 @@
 ﻿using apiGateWay.Extensions;
+using apiGateWay.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -38,6 +39,8 @@ builder.Services.AddAuthorization(options =>
 
 builder.Services.AddReverseProxy()
     .LoadFromConfig(builder.Configuration.GetSection("ReverseProxy"));
+builder.Services.AddHttpClient(GatewayWarmupService.HttpClientName);
+builder.Services.AddHostedService<GatewayWarmupService>();
 
 var app = builder.Build();
 
@@ -49,3 +52,4 @@ app.UseHeaderInjection(internalSecret);
 app.MapGet("/", () => "Communication with API Gateway"); 
 app.MapReverseProxy();
 app.Run();
+
