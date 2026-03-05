@@ -9,7 +9,8 @@ namespace apiGateWay.Extensions
         private static readonly Dictionary<string, string[]> _headersPerRoute = new()
         {
             { "/Auths/generar-codigo-acceso",   new[] { "X-User-Id" } },
-            {"/Comercios/ok", new[] {"X-User-Id"} },
+            {"/Comercios/CrearComercios", new[] {"X-User-Id"} },
+            {"/Comercios/ok", new [] { "X-User-Id" } },
             {"/Comercios/ActualizarComercio", new[] { "X-User-Id" } },
 
         };
@@ -30,7 +31,12 @@ namespace apiGateWay.Extensions
                     var allowedHeaders = _headersPerRoute[route];
 
                     if (allowedHeaders.Contains("X-User-Id"))
-                        context.Request.Headers["X-User-Id"] = context.User.FindFirst("username")?.Value;
+                    {
+                        var userId =  context.User.FindFirst("username")?.Value;
+
+                        if (!string.IsNullOrWhiteSpace(userId))
+                            context.Request.Headers["X-User-Id"] = userId;
+                    }
 
                     
 
